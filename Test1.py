@@ -22,28 +22,11 @@ def check_file():
             menu_name()
 
 def chtenie_from_file():
-    with open("spravochnik.json", "r", encoding='utf-16') as data_json_r:
+    with open("spravochnik.json", "r", encoding='utf-32') as data_json_r:
         spisok = json.load(data_json_r)
         return spisok
-def zapis_v_file(name,zapis):
-    with open("spravochnik.json", "r", encoding='utf-16') as data_json_r:
-        spisok = json.load(data_json_r)
-        spisok[name] = zapis
-        print(spisok)
-    with open("spravochnik.json", "w", encoding='utf-16') as data_json_w:
-        json.dump(spisok, data_json_w)
-    print('Запись завершена.\n')
-    while True:
-        vvod = input('\n\n Выйти в меню("Да") или добавить новую запись("+")? \n')
-        if vvod == 'Да':
-            menu_name()
-        elif vvod == '+':
-            new_name()
-        elif vvod == 'Нет':
-            exit()
-        else:
-            print('Напишите слово "Да" или "+" \n')
-            continue
+
+
 def new_name():
     name = input('Введи имя индивидуума :\n')
     telephone = input('Введи номер телефона\n')

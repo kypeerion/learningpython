@@ -1,12 +1,12 @@
 import json
 
-data_json= {"Андрей": {"Номер телефона": "89991234567\n",
-                          "Информация": "Мудак, торчит косарь\n"},
-            "Сергей":{"Номер телефона": "89991234567\n",
-                          "Информация":"Пупа\n"},
-            "Илюха":{"Номер телефона": "89991234567\n",
-                                     "Информация":"Падла, мусорнулся.\n"},
-            }
+# data_json= {"Андрей": {"Номер телефона": "89991234567\n",
+#                           "Информация": "Мудак, торчит косарь\n"},
+#             "Сергей":{"Номер телефона": "89991234567\n",
+#                           "Информация":"Пупа\n"},
+#             "Илюха":{"Номер телефона": "89991234567\n",
+#                                      "Информация":"Падла, мусорнулся.\n"},
+#             }
 
 
 # def check_file():
@@ -19,10 +19,10 @@ data_json= {"Андрей": {"Номер телефона": "89991234567\n",
 #             print('Файл находится в директории')
 #             menu_name()
 
-def chtenie_from_file():
-    with open("spravochnik.json", "r", encoding='utf-16') as data_json_r:
-        spisok = json.load(data_json_r)
-        return spisok
+# def chtenie_from_file():
+#     with open("spravochnik.json", "r") as data_json_r:
+#         spisok = json.load(data_json_r)
+#         return spisok
 
 
 def new_name():
@@ -32,8 +32,8 @@ def new_name():
     zapis = {"Номер телефона": "{0}".format(telephone),
                           "Информация":"{0}".format(info)
                      }
-    zapis_v_file(name,zapis)
-    with open("spravochnik.json", "a", encoding='utf-16') as data_json_a:
+    zapis_v_file = {name:zapis}
+    with open("spravochnik.json", "a", encoding='utf-32') as data_json_a:
         json.dump(zapis_v_file, data_json_a)
 
 def poisk_po_name():
@@ -43,8 +43,7 @@ def poisk_po_name():
     #     for i in spisok:
     #     if i[''] == vvod:
     #         print(i)
-    with open("spravochnik.json", "r", encoding='utf-16') as spisok:
-    while True:
+    with open("spravochnik.json", "r", encoding='utf-32') as spisok:
         vvod = input('Введи имя:')
         spisok_naidenogo = ''
         chislo_spiska = 1
