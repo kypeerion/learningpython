@@ -1,33 +1,64 @@
 import json
+import os
+
+def find_file():
+    if os.path.exists("recipes.json"):
+        print("File is here")
+        menu_func()
+    else:
+        print("File doesn't exist")
+        menu_func()
+
 
 #menu func
 def menu_func():
     while True:
-        print("Добавить рецепт\nНайти рецепт по названию\nВывести список рецептов\nУдалить рецепт")
+        print("1. Добавить рецепт\n2. Найти рецепт по названию\n3. Вывести список рецептов\n4. Удалить рецепт")
+        user_input = input("Введите нужный Вам пункт меню")
 
-import os
-def find_file():
-    if os.path.exists("recipes.json"):
+        if user_input == "Выход":
+            break
 
-slovar = {}
-while true:
-    def recipes_in(slovar):
-        dish_name = input("Какое блюдо будем готовить? Введите название.")
-        while True:
-            cooking_steps = input("Расскажи, как нам это делать (шаги)")
-            print("Что-то еще? Да/Нет")
-            answer = input()
-            if answer == "Да":
-                continue
-            else:
-                break
-        ingredients = input("Из чего будем готовить? (ингредиенты")
+        elif user_input == "1":
+            recipes_in()
 
-    return slovar
+        elif user_input == "2":
+            name = input("Какое блюдо Вы хотите найти?")
+            search()
+
+        elif user_input == "3":
+            a = upload_all()
+            print(a)
+
+        elif user_input = "4":
+            #Удаление рецепта
 
 
-    with open("recipes.json", "w"):
-        json.dump(data, s)
+
+def recipes_in():
+    dish_name = input("Какое блюдо будем готовить? Введите название.\n")
+    zapis_cooking = []
+    zapis_ing = []
+    zapis("Введите ингредиенты по-очереди. {0} ингредиент. Когда закончите еще раз нажмите 'Enter'\n", zapis_ing)
+    zapis("Введи этапы приготовления. {0} шаг. Когда закончите еще раз нажмите 'Enter'\n", zapis_cooking)
+    resultat = input("И что должно получится?\n")
+    zapis_recepta = {dish_name: {"Ингридиенты": "{0}".format(zapis_ing),
+                                 "Как готовить?": "{0}".format(zapis_cooking),
+                                 "Финальный результат.": "{0}".format(resultat),
+                                 }}
+    with open("recipes.json", "w", encoding = "utf-8")as data_json_a:
+        json.dump(chitat, data_json_a)
+
+def zapis(x, y):
+    count = 1
+    while True:
+        steps = input(x.format(count))
+        if steps == "":
+            break
+        else:
+            y.append(steps)
+            count += 1
+
 
 def search(x):
     with open("recipes.json", "r") as f:
@@ -56,20 +87,6 @@ def upload_all(data):
     #for po spisku receptov i vivod imen
     #naiti index element and delete it
     #enumerate prochitat
-    print("Выход")
-    user_input = input(": ")
 
-    if user_input == "Выход":
-        break
 
-    elif user_input == "Добавить рецепт":
-        recipes_in()
-
-    elif user_input == "Найти рецепт по названию":
-        print("Какое блюдо Вы хотите найти?")
-        name = input()
-        search()
-
-    elif user_input == "Вывести список рецептов":
-        a = upload_all()
-        print(a)
+find_file()
