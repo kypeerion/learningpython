@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import json
 
 # data_json= {"Андрей": {"Номер телефона": "89991234567\n",
@@ -26,15 +28,18 @@ import json
 
 
 def new_name():
+    with open('spravochnik.json', 'r') as sp:
+        kek = json.load(sp)
+
+
     name = input('Введи имя индивидуума :\n')
     telephone = input('Введи номер телефона\n')
     info = input('Введи информацию о контакте\n')
     zapis = {"Номер телефона": "{0}".format(telephone),
-                          "Информация":"{0}".format(info)
-                     }
-    zapis_v_file = {name:zapis}
-    with open("spravochnik.json", "a", encoding='utf-32') as data_json_a:
-        json.dump(zapis_v_file, data_json_a)
+                          "Информация":"{0}".format(info)}
+    kek[name] = zapis
+    with open("spravochnik.json", 'w') as data_json_a:
+        json.dump(kek, data_json_a)
 
 def poisk_po_name():
     # with open("spravochnik.json", "r", encoding='utf-16') as data_json_r:
@@ -43,7 +48,7 @@ def poisk_po_name():
     #     for i in spisok:
     #     if i[''] == vvod:
     #         print(i)
-    with open("spravochnik.json", "r", encoding='utf-32') as spisok:
+    with open("spravochnik.json", "r") as spisok:
         vvod = input('Введи имя:')
         spisok_naidenogo = ''
         chislo_spiska = 1
@@ -66,8 +71,9 @@ def poisk_po_name():
 
 
 def menu_name():
-    print('1) Найти запись\n2) Добавить запись\n3) Показать все записи\n4) Выход')
+
     while True:
+        print('1) Найти запись\n2) Добавить запись\n3) Показать все записи\n4) Выход')
         vvod = input('Выбери нужный пункт меню: \n')
         if vvod == '1':
             poisk_po_name()
@@ -91,7 +97,7 @@ def pokazat_all_spisok():
     # spisok_zapisey = []
     # for zapis, chislo in zip(spisok, range(chislo_zapisey)):
     #     spisok_zapisey.append('{0}) {1}'.format(chislo+1, zapis))
-    with open("spravochnik.json", "r", encoding='utf-32') as data_json_r:
+    with open("spravochnik.json", "r") as data_json_r:
         spisok = json.load(data_json_r)
         print (spisok)
     vvod = input('\nДля возврата в меню, напиши "Да"\n')
