@@ -70,52 +70,56 @@ class Vesta(Car):
     def __str__(self):
         return'Имя: {}, ЛС: {}, Объем: {}, Скорость: {}, Расход: {}, Цена: {}'.format(self.name, self.ls, self.obyom_benz,
                                                                                 self.max_speed, self.rashod, self.price)
+
+class Autosalon():
+    def __init__(self,your_name,cash,cars):
+        self.your_name = your_name
+        self.cash = cash
+        self.cars = cars
+
+    def prodazha(self):
+        print('Здравствуйте-пидаравствуйте, {}, за ваши {} рублей мы можем вам предложить:\n'.format(self.your_name, self.cash))
+        count = 4
+        for i in range(4):
+            if t.cars[i].price <= self.cash:
+                print(t.cars[i])
+            else:
+                count -= 1
+        if count == 0:
+            print('Пошiв тi на хуi, клятi москаль')
+        while True:
+            vibor = abs(int(input('Выберите машину из списка: \n')))
+            vibor -= 1 if vibor != 0 else 5
+            print(vibor)
+            try:
+                vibrali_tachku=t.cars[vibor].name
+            except:
+                print('Долбоёб. Выбери из списка, а не из жопы')
+            else:
+                 print(t.cars[vibor].name)
+                 break
 tachki = [BMW(),Mercedes(),Kalina(),Vesta()]
-print('Какую тачку Ви хотите?:\n'+'БМВ\nМерседес\nКалина\nВеста\n')
-while True:
-    vibor = int(input('Выберите машину из списка: \n'))
-    vibor-=1
-    try:
-        vibrali_tachku=tachki[vibor]
-    except:
-        print('Долбоёб. Выбери из списка, а не из жопы')
-    else:
-        print(vibrali_tachku.name)
-        break
-kilometri = int(input('Введите километраж: \n'))
-p = vibrali_tachku.ehat(kilometri)
+imya = input('Как вас зовут?\n')
+nalichnye = int(input('Сколько вы готовы потратить на автомобиль (В рублях)?\n'))
+t = Autosalon(imya, nalichnye,tachki)
+t.prodazha()
 
 
-# class Autosalon():
-#     def __init__(self,your_name,cash,cars):
-#         self.your_name = your_name
-#         self.cash = cash
-#         self.cars = cars
-#
-#     def prodazha(self):
-#         print('Здравствуйте-пидаравствуйте, {}, за ваши {} рублей мы можем вам предложить:\n'.format(self.your_name, self.cash))
-#         count = 4
-#         tachki = [BMW(),Mercedes(),Kalina(),Vesta()]
-#         vibor_tachki=[]
-#         for i in tachki:
-#             if self.cars <= self.cash:
-#                 self.specifikaciya()
-#                 vibor_tachki.append(i)
-#             else:
-#                 count -= 1
-#         if count == 0:
-#             print('Пошiв тi на хуi, клятi москаль')
-#         while True:
-#             vibor = int(input('Выберите машину из списка: \n'))
-#             vibor-=1
-#             try:
-#                 vibrali_tachku=vibor_tachki[vibor]
-#             except:
-#                 print('Долбоёб. Выбери из списка, а не из жопы')
-#             else:
-#                 with vibrali_tachku:
-#                  print("заглушка")
-# imya = input('Как вас зовут?\n')
-# nalichnye = int(input('Сколько вы готовы потратить на автомобиль (В рублях)?\n'))
-# t = Autosalon(imya, nalichnye,BMW())
-# r = t.Prodavec()
+
+
+
+
+# while True:
+#     vibor = int(input('Выберите машину из списка: \n'))
+#     vibor-=1
+#     try:
+#         vibrali_tachku=tachki[vibor]
+#     except:
+#         print('Долбоёб. Выбери из списка, а не из жопы')
+#     else:
+#         print(vibrali_tachku.name)
+#         break
+# kilometri = int(input('Введите километраж: \n'))
+# p = vibrali_tachku.ehat(kilometri)
+
+
