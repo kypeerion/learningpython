@@ -1,34 +1,19 @@
-# -*- coding: utf-8 -*-
-
 import json
 
-# data_json= {"Андрей": {"Номер телефона": "89991234567\n",
-#                           "Информация": "Мудак, торчит косарь\n"},
-#             "Сергей":{"Номер телефона": "89991234567\n",
-#                           "Информация":"Пупа\n"},
-#             "Илюха":{"Номер телефона": "89991234567\n",
-#                                      "Информация":"Падла, мусорнулся.\n"},
-#             }
-
-
-# def check_file():
-#     try:
-#         check = open('spravochnik.json')
-#     except IOError as e:
-#         with open("spravochnik.json", "w", encoding='utf-16') as file:
-#     else:
-#         with check:
-#             print('Файл находится в директории')
-#             menu_name()
-
-# def chtenie_from_file():
-#     with open("spravochnik.json", "r") as data_json_r:
-#         spisok = json.load(data_json_r)
-#         return spisok
+def check_file():
+    try:
+        check = open('spravochnik.json')
+    except IOError as e:
+        with open("spravochnik.json", "w", encoding='utf-8') as file:
+            json.dump({}, file)
+        menu_name()
+    else:
+        with check:
+            menu_name()
 
 
 def new_name():
-    with open('spravochnik.json', 'r') as sp:
+    with open('spravochnik.json', 'r', encoding='utf-8') as sp:
         kek = json.load(sp)
 
 
@@ -38,23 +23,19 @@ def new_name():
     zapis = {"Номер телефона": "{0}".format(telephone),
                           "Информация":"{0}".format(info)}
     kek[name] = zapis
-    with open("spravochnik.json", 'w') as data_json_a:
+    with open("spravochnik.json", 'w', encoding='utf-8') as data_json_a:
         json.dump(kek, data_json_a)
 
+
 def poisk_po_name():
-    # with open("spravochnik.json", "r", encoding='utf-16') as data_json_r:
-    #     vvod = input('Введи имя:')
-    #     spisok = json.load(data_json_r)
-    #     for i in spisok:
-    #     if i[''] == vvod:
-    #         print(i)
-    with open("spravochnik.json", "r") as spisok:
+    with open("spravochnik.json", "r", encoding='utf-8') as sp:
+        spisok = json.load(sp)
         vvod = input('Введи имя:')
         spisok_naidenogo = ''
         chislo_spiska = 1
         for zapis in spisok:
             if zapis == vvod:
-                print(spisok[zapis])
+                print(vvod,' : ',spisok[zapis])
                 while True:
                     vvod = input('\n\nЕсли хочешь выйти в меню, напиши "Да"\n')
                     if vvod == 'Да':
@@ -89,24 +70,17 @@ def menu_name():
 
 
 def pokazat_all_spisok():
-    # spisok = chtenie_from_file()
-    # chislo_zapisey= len(spisok.keys())
-    # # spisok_zapisey = ''
-    # # for zapis,chislo in zip(spisok, range(chislo_zapisey)):
-    # #     spisok_zapisey = spisok_zapisey + '{0}) {1}\n'.format(chislo+1, zapis)
-    # spisok_zapisey = []
-    # for zapis, chislo in zip(spisok, range(chislo_zapisey)):
-    #     spisok_zapisey.append('{0}) {1}'.format(chislo+1, zapis))
-    with open("spravochnik.json", "r") as data_json_r:
+    with open("spravochnik.json", "r", encoding='utf-8') as data_json_r:
         spisok = json.load(data_json_r)
         print (spisok)
-    vvod = input('\nДля возврата в меню, напиши "Да"\n')
-    if vvod == 'Да':
-        menu_name()
-    elif vvod == 'Нет':
-        exit()
-    else:
-        print('Не тупи\n')
+    while True:
+        vvod = input('\nДля возврата в меню, напиши "Да"\n').lower()
+        if vvod == 'да':
+            menu_name()
+        elif vvod == 'нет':
+            exit()
+        else:
+            print('Не тупи\n')
 
 
-menu_name()
+check_file()
